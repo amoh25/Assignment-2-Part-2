@@ -114,4 +114,10 @@ contactnav.addEventListener("click", (i) => {
   renderIndex(contactList);
 });
 
-  
+const createcont = document.getElementById("newcontact");
+createcont.addEventListener("click", (i) => {
+  console.log(createcont);
+  i.preventDefault();
+  cleanUpCreate();
+  renderCreate();
+});  
