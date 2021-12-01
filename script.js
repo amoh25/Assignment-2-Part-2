@@ -27,12 +27,6 @@ function cleanUpIndex(){
     mainb.innerHTML = '';
 }
 
-// function createSingleIndex(contactList,i) {
-// 	const mainclass = document.querySelector('.main') 
-// 	mainclass.innerHTML = `<a href="page3.html"><div class="contact"><p>${contactList[i].name}</p></div></a>`
-// 	return `<a href="page3.html"><div class="contact"><p>${contactList[i].name}</p></div></a>`
-// }
-
 
 function renderIndex(contactList){
 	const mainelem = document.querySelector('.main')
@@ -49,7 +43,7 @@ function cleanUpCreate(){
 }
 function renderCreate(){
 	const newform = document.createElement('form');
-	 newform.insertAdjacentHTML('beforeend', `
+	 newform.insertAdjacentHTML("afterbegin", `
 	  <div class="contactedit">
 	  <div class="contactimg">
 		<img src="./img/profile.jpg" class ="profilepic" alt="Profile picture">
@@ -77,25 +71,28 @@ function renderCreate(){
 	 `)
 	 document.body.appendChild(newform);
 
-	 const cancelbut = document.querySelector('.cancel')
-	 cancelbut.addEventListener("click", (r) => {
-		cleanUpView();
-		renderIndex(contactList);
-	 })
+	 	const cancelbut = document.querySelector("#cancel");
+	 	cancelbut.addEventListener("click", (r) => {
+			r.preventDefault;
+			cleanUpCreate();
+			renderIndex(contactList);
 	 
-	 const savebut = document.querySelector('.save');
-	 savebut.addEventListener('click', (r) => {
-		 r.preventDefault();
-		 contactinfo = []
-		 const getcontactinfo = document.querySelector('.inputcontainer')
-		 for (let i = 0; i < getcontactinfo.length; i++) {
-			contactinfo.push(getcontactinfo[i].firstElementChild.value);
-		  } 
-		  
-		  cleanUpCreate()
-		  renderIndex(contactinfo)
-	 } )
+	});
+	 
+	 	const savebut = document.querySelector("#savecontact");
+	 	savebut.addEventListener('click', (r) => {
+			r.preventDefault();
+		 	contactinfo = [];
+			contactinfo.name = document.querySelector("#contactname").value;
+			contactinfo.phone = document.querySelector("#contactphone").value;
+			contactinfo.address = document.querySelector("#contactaddress").value;
+			contactinfo.email = document.querySelector("#contactemail").value; 
+			contactList.push(contactinfo);
+		  })
+		  	cleanUpCreate()
+		  	renderIndex(contactinfo)
 }
+
 
 
 function cleanUpView(){
@@ -105,17 +102,16 @@ function cleanUpView(){
 
 
 function renderView(contactList){
-	let r = 0
 	const viewcont = document.querySelector(".main");
 	viewcont.insertAdjacentHTML('Afterbegin', `
 	<div class="contactinfo">
 	<div class="contactname">
-		${contactList[r].name}
+		${contactList[0].name}
 		<img src="./img/profile.jpg" class="profilepic" alt="Profile picture">
 	</div>
-	<div class="contactemail">email: ${contactList[r].email}</div>
-	<div class="contactphone">cell: ${contactList[r].phone}</div>
-	<div class="contactaddress">address: ${contactList[r].address}</div>
+	<div class="contactemail">email: ${contactList[0].email}</div>
+	<div class="contactphone">cell: ${contactList[0].phone}</div>
+	<div class="contactaddress">address: ${contactList[0].address}</div>
 	<div class="buttons">
 		<button class="button edit" value="Edit">Edit</button>
 		<button class="button close" value="Close">Close</button>
@@ -123,14 +119,14 @@ function renderView(contactList){
 	</div>
 	</div>
   `);
-const editbut = document.querySelector('.edit')
+const editbut = document.querySelector(".edit")
 editbut.addEventListener("click", (r) => {
     r.preventDefault();
     r.stopImmediatePropagation();
     alert("nothing");
   });
 
-const closebut = document.querySelector('.close')
+const closebut = document.querySelector(".close")
 closebut.addEventListener("click", (r) => {
     cleanUpView();
     renderIndex(contactList);
@@ -154,23 +150,20 @@ createcont.addEventListener("click", (i) => {
 });  
 
 
-function createSingleIndex(contactList,i) {
-	const mainclass = document.querySelector('.main') 
-	mainclass.innerHTML = `<a href="page3.html"><div class="contact"><p>${contactList[i].name}</p></div></a>`
-	let Intext = document.createTextNode(`${contact.name}`);
-	InDiv.appendChild(Intext);
-	mainclass.addEventListener("click", (r) => {
-		r.preventDefault();
-		contactName = r.target.textContent;
-		for (let i = 0; i < contactList.length; i++) {
-		  if (contactList[i].name == contactName) {
+document.addEventListener("DOMContentLoaded", (r) => {
+	renderIndex(contactList)})
+
+
+function createSingleIndex(contactList){
+	const Indiv = querySelector(".contact");
+	Indiv.addEventListener("click", (r) => {
+	r.preventDefault();
+	for (let i = 0; i < contactList.length; i++) {
+		if (contactList[i].name == Indiv){
 			cleanUpIndex();
 			renderView(contactList[i]);
-		  }
-		}
-	  });
-	  return InDiv;
-  }
-
-  document.addEventListener("DOMContentLoaded", (e) => {
-	renderIndex(contactList)})
+	}
+	}
+});
+return Indiv;
+}
