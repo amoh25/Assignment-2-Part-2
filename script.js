@@ -27,11 +27,11 @@ function cleanUpIndex(){
     mainb.innerHTML = '';
 }
 
-function createSingleIndex(contactList,i) {
-	const mainclass = document.querySelector('.main') 
-	mainclass.innerHTML = `<a href="page3.html"><div class="contact"><p>${contactList[i].name}</p></div></a>`
-	return `<a href="page3.html"><div class="contact"><p>${contactList[i].name}</p></div></a>`
-}
+// function createSingleIndex(contactList,i) {
+// 	const mainclass = document.querySelector('.main') 
+// 	mainclass.innerHTML = `<a href="page3.html"><div class="contact"><p>${contactList[i].name}</p></div></a>`
+// 	return `<a href="page3.html"><div class="contact"><p>${contactList[i].name}</p></div></a>`
+// }
 
 
 function renderIndex(contactList){
@@ -49,7 +49,7 @@ function cleanUpCreate(){
 }
 function renderCreate(){
 	const newform = document.createElement('form');
-	 newform.innerHTML = `
+	 newform.insertAdjacentHTML('beforeend', `
 	  <div class="contactedit">
 	  <div class="contactimg">
 		<img src="./img/profile.jpg" class ="profilepic" alt="Profile picture">
@@ -74,7 +74,7 @@ function renderCreate(){
 		<button type="submit" class="button save" id="savecontact" name="savecontact">Save Contact</button>
 		<button type="reset" class="button cancel" id="cancel" name="cancel">Cancel</button>
 	  </div>
-	 `
+	 `)
 	 document.body.appendChild(newform)
 }
 
@@ -121,3 +121,30 @@ createcont.addEventListener("click", (i) => {
   cleanUpCreate();
   renderCreate();
 });  
+
+
+const editbut = document.getElementsByClassName('.edit')
+editbut.addEventListener("click", (r) => {
+    r.preventDefault();
+    r.stopImmediatePropagation();
+    alert("nothing");
+  });
+
+
+function createSingleIndex(contactList,i) {
+	const mainclass = document.querySelector('.main') 
+	mainclass.innerHTML = `<a href="page3.html"><div class="contact"><p>${contactList[i].name}</p></div></a>`
+	let Intext = document.createTextNode(`${contact.name}`);
+	InDiv.appendChild(Intext);
+	mainclass.addEventListener("click", (r) => {
+		r.preventDefault();
+		contactName = r.target.textContent;
+		for (let i = 0; i < contactList.length; i++) {
+		  if (contactList[i].name == contactName) {
+			cleanUpIndex();
+			renderView(contactList[i]);
+		  }
+		}
+	  });
+	  return InDiv;
+  }
