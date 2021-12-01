@@ -104,6 +104,18 @@ function renderView(contactList){
 	</div>
 	</div>
   `;
+const editbut = document.querySelector('.edit')
+editbut.addEventListener("click", (r) => {
+    r.preventDefault();
+    r.stopImmediatePropagation();
+    alert("nothing");
+  });
+
+const closebut = document.querySelector('.close')
+closebut.addEventListener("click", (r) => {
+    cleanUpView();
+    renderIndex(contactList);
+  });
 }
   
 const contactnav = document.getElementById("contactshome");
@@ -121,14 +133,6 @@ createcont.addEventListener("click", (i) => {
   cleanUpCreate();
   renderCreate();
 });  
-
-
-const editbut = document.getElementsByClassName('.edit')
-editbut.addEventListener("click", (r) => {
-    r.preventDefault();
-    r.stopImmediatePropagation();
-    alert("nothing");
-  });
 
 
 function createSingleIndex(contactList,i) {
