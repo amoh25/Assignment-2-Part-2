@@ -75,7 +75,17 @@ function renderCreate(){
 		<button type="reset" class="button cancel" id="cancel" name="cancel">Cancel</button>
 	  </div>
 	 `)
-	 document.body.appendChild(newform)
+	 document.body.appendChild(newform);
+
+	 const savebut = document.querySelector('.save');
+	 savebut.addEventListener('click', (r) => {
+		 r.preventDefault();
+		 contactinfo = []
+		 const getcontactinfo = document.querySelector('.inputcontainer')
+		 for (let i = 0; i < getcontactinfo.length; i++) {
+			info.push(getcontactinfo[i].firstElementChild.value);
+		  } 
+	 } )
 }
 
 
@@ -88,7 +98,7 @@ function cleanUpView(){
 function renderView(contactList){
 	let r = 0
 	const viewcont = document.querySelector(".main");
-	viewcont.innerHTML = `
+	viewcont.insertAdjacentHTML('Afterbegin', `
 	<div class="contactinfo">
 	<div class="contactname">
 		${contactList[r].name}
@@ -103,7 +113,7 @@ function renderView(contactList){
 	</div>
 	</div>
 	</div>
-  `;
+  `);
 const editbut = document.querySelector('.edit')
 editbut.addEventListener("click", (r) => {
     r.preventDefault();
