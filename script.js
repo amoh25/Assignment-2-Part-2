@@ -89,8 +89,11 @@ function renderCreate(){
 		 contactinfo = []
 		 const getcontactinfo = document.querySelector('.inputcontainer')
 		 for (let i = 0; i < getcontactinfo.length; i++) {
-			info.push(getcontactinfo[i].firstElementChild.value);
+			contactinfo.push(getcontactinfo[i].firstElementChild.value);
 		  } 
+		  
+		  cleanUpCreate()
+		  renderIndex(contactinfo)
 	 } )
 }
 
