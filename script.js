@@ -168,3 +168,6 @@ function createSingleIndex(contactList,i) {
 	  });
 	  return InDiv;
   }
+
+  document.addEventListener("DOMContentLoaded", (e) => {
+	renderIndex(contactList)})
