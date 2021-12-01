@@ -77,6 +77,12 @@ function renderCreate(){
 	 `)
 	 document.body.appendChild(newform);
 
+	 const cancelbut = document.querySelector('.cancel')
+	 cancelbut.addEventListener("click", (r) => {
+		cleanUpView();
+		renderIndex(contactList);
+	 })
+	 
 	 const savebut = document.querySelector('.save');
 	 savebut.addEventListener('click', (r) => {
 		 r.preventDefault();
